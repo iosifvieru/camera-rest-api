@@ -2,15 +2,22 @@
 # 9 Aug. 2025
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from controllers import camera_controller
-from contextlib import asynccontextmanager
 
 app = FastAPI()
 
-app.include_router(camera_controller.router)
+origins = [
+    "http://localhost:5173",
+    "https://unde-sunt-camere.vercel.app/"
+]
 
-@app.get('/')
-def hello_world():
-    return {
-        "message": "Hello world!"
-    }
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=[""],
+    allow_headers=[""]
+)
+
+app.include_router(camera_controller.router)
