@@ -9,15 +9,16 @@ app = FastAPI()
 
 origins = [
     "http://localhost:5173",
-    "https://unde-sunt-camere.vercel.app/"
+    "https://unde-sunt-camere.vercel.app/",
+    "https://5.14.161.196"
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=[""],
-    allow_headers=[""]
+    allow_methods=["*"],
+    allow_headers=["*"]
 )
 
 app.include_router(camera_controller.router)

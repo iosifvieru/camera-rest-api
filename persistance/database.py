@@ -5,11 +5,10 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+if os.path.exists('.env'):
+    load_dotenv()
 
 def get_database(db_name: str = None):
-    global _client
-
     user = os.getenv('MONGO_USER')
     if not user:
         raise ValueError("MONGO_USER env variable not set.")
@@ -26,7 +25,7 @@ def get_database(db_name: str = None):
     if not app_name:
         raise ValueError('MONGO_APP_NAME env variable not set.')
 
-    CONNECTION_STRING = f"mongodb+srv://{user}:{password}@{host}/?retryWrites=true&w=majority&appName={app_name}"
+    CONNECTION_STRING = f"mongodb+srv://{user}:{password}@{host}/?retryWrites=true&w=majority&appName={app_name}&tls=true"
 
     # create connection using mongoclient
     client = MongoClient(CONNECTION_STRING)

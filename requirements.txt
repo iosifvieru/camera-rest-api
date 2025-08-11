@@ -1,6 +1,6 @@
 fastapi
 pydantic
 typing
-pymongo
+pymongo[srv]
 uvicorn
 dotenv
