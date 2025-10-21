@@ -8,9 +8,7 @@ from controllers import camera_controller
 app = FastAPI()
 
 origins = [
-    "http://localhost:5173",
     "https://unde-sunt-camere.vercel.app/",
-    "https://5.14.161.196"
 ]
 
 app.add_middleware(
